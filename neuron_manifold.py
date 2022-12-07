@@ -1,3 +1,5 @@
+__author__      = "galen wilkerson"
+
 import cv2
 from mat4py import loadmat
 import numpy as np
@@ -62,14 +64,13 @@ def draw_neuron_centers(baseline_1_mask, coords):
     sns.heatmap(baseline_1_mask > 0);
 
 
-def get_binarized_firing_not_firing_at_timestep(baseline_deconv, time_step, firing_threshold = 0):
+def get_binarized_firing_at_timestep(baseline_deconv, time_step, firing_threshold = 0):
     # neuron firing at time_step
     firing_at_timestep = baseline_deconv[time_step,:]
 
     binarized_firing = np.array(firing_at_timestep > firing_threshold)
-    binarized_not_firing = np.array(firing_at_timestep <= firing_threshold)
     
-    return(binarized_firing, binarized_not_firing)
+    return(binarized_firing) 
 
 
 def get_binarized_firing_array(baseline_deconv, firing_threshold = 0):
